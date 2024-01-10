@@ -1,30 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ChatRoom from "../components/chatroom";
+import '../App.css'
+import { useNavigate } from 'react-router-dom';
 
-const SetupPage = () => {
-  const [user, setUser] = useState();
+const SetupPage = ( { username, setUsername, room, setRoom, socket } ) =>
+{
+  const navigate = useNavigate();
 
-  const handleChangeUser = (e) => {
-    setUser(e.target.value);
+  const handleChangeUser = ( e ) =>
+  {
+    setUsername( e.target.value );
   };
 
-  const addUser = () => {
-    return <ChatRoom user={user}/>
+  const handleChangeRoom = ( e ) =>
+  {
+    setRoom( e.target.value );
   };
+
+  const joinRoom = () =>
+  {
+    if ( room !== '' && username !== '' )
+    {
+      socket.emit( 'join_room', { username, room } );
+    }
+    navigate( '/roomchat', { replace: true } );
+  };
+
+  const setUp = () =>
+  {
+    return (
+      <div className="title-box-chat">
+        <div className="title">Nu Web Chat</div>
+        <div className="common">
+          <input
+            value={ username }
+            className="user"
+            type="text"
+            onChange={ handleChangeUser }
+            placeholder="Username"
+          />
+        </div>
+        <div className="common">
+          <select onChange={ handleChangeRoom }>
+            <option>-- Select Room --</option>
+            <option value="dev">Dev</option>
+            <option value="mkt">Mkt</option>
+            <option value="all">All</option>
+          </select>
+        </div>
+
+        <button onClick={ joinRoom }>Join</button>
+      </div>
+    )
+  }
 
   return (
-    <div className="title-box-chat">
-      <div className="title">Join Room Chat</div>
-      <input
-        value={user}
-        className="user"
-        type="text"
-        onChange={handleChangeUser}
-        placeholder="Please enter your username"
-      />
-      <button onClick={addUser}>Join</button>
-    </div>
-  );
+    setUp()
+  )
 };
 
 export default SetupPage;
