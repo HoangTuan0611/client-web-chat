@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import ChatRoom from "../components/chatroom";
 import '../App.css'
 import { useNavigate } from 'react-router-dom';
 
