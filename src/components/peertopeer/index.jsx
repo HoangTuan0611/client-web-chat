@@ -23,7 +23,6 @@ const ChatRoom = () => {
     });
 
     socketRef.current.on("addUser", (dataGot) => {
-      console.log(dataGot);
     });
 
     return () => {
@@ -46,7 +45,6 @@ const ChatRoom = () => {
         content: message,
         id: id,
       };
-      console.log(msg);
       socketRef.current.emit("sendDataClient", msg);
 
       setMessage("");

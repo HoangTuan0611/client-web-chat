@@ -4,7 +4,7 @@ import SetupPage from "./pages";
 import io from 'socket.io-client';
 import ChatRoom from "./components/chatroom";
 
-const socket = io.connect( 'http://localhost:3000' );
+const socket = io.connect( 'https://backend-web-chat.onrender.com/' );
 
 const AppRoutes = () =>
 {

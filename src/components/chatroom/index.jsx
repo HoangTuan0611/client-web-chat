@@ -147,9 +147,6 @@ const ChatRoom = ( props ) =>
     socket.emit( "upload_file", { username, room, file } );
   }
 
-  console.log(myVideo);
-  console.log(userVideo);
-
   return (
     <div className="box-chat">
       <div className="box-chat_message">{ renderMess }</div>
