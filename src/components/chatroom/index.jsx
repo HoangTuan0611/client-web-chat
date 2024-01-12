@@ -169,7 +169,7 @@ const ChatRoom = ( props ) =>
         <div className="video-other">
           { callAccepted && !callEnded ?
             <video playsInline ref={ userVideo } autoPlay style={ { width: "300px" } } /> :
-            '111' }
+            null }
         </div>
       </div>
       <div>
