@@ -4,7 +4,12 @@ import SetupPage from "./pages";
 import io from 'socket.io-client';
 import ChatRoom from "./components/chatroom";
 
-const socket = io.connect( 'https://backend-web-chat.onrender.com/' );
+const socket = io.connect( 'https://backend-web-chat.onrender.com/', {
+  withCredentials: true,
+  extraHeaders: {
+    "my-custom-header": "abcd"
+  }
+});
 
 const AppRoutes = () =>
 {
